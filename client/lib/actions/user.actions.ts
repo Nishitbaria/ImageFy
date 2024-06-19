@@ -23,6 +23,7 @@ export async function getUserById(userId: string) {
     try {
         await connectToDatabase();
 
+        // console.log(userId, "Printing From the USer");
         const user = await User.findOne({ clerkId: userId });
 
         if (!user) throw new Error("User not found");
