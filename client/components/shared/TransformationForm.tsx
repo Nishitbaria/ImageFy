@@ -154,8 +154,8 @@ export default function TransformationForm({
   };
 
   const onInputChangeHandler = (
-    value: string,
     fieldName: string,
+    value: string,
     type: string,
     onChangeField: (value: string) => void
   ) => {
@@ -164,11 +164,12 @@ export default function TransformationForm({
         ...prevState,
         [type]: {
           ...prevState?.[type],
-          [fieldName === "prompt" ? "prompt" : "color"]: value,
+          [fieldName === "prompt" ? "prompt" : "to"]: value,
         },
       }));
-      return onChangeField(value);
-    }, 1000);
+    }, 1000)();
+
+    return onChangeField(value);
   };
   // TODO: Return to updateCredits function
   const onTransformHandler = async () => {
@@ -211,6 +212,7 @@ export default function TransformationForm({
                 onValueChange={(value) =>
                   onSelectFiledHandler(value, field.onChange)
                 }
+                value={field.value}
               >
                 <SelectTrigger className="select-field ">
                   <SelectValue placeholder="Select Size" />
